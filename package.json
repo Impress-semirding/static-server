@@ -1,6 +1,6 @@
 {
   "name": "static-server-script",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "description": "",
   "main": "app.js",
   "bin": "./dist/app.js",
