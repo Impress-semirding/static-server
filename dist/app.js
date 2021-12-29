@@ -82,7 +82,9 @@ if (!!Object.keys(proxyConfig).length) {
 }
 
 if (staticPath) {
-  app.use(koaStatic(staticPath));
+  app.use(koaStatic(staticPath, {
+    maxAge: 30 * 24 * 60 * 60 * 1000
+  }));
 }
 
 app.use(bodyParser(['json', 'form', 'text']));
@@ -90,6 +92,7 @@ const router = new Router();
 router.use('/health', health.routes(), health.allowedMethods());
 app.use(async ctx => {
   ctx.set('Content-Type', 'text/html');
+  ctx.set("Cache-control", "no-cache ");
   ctx.body = template;
 }); // http.createServer(app.callback()).listen(8080);
 
